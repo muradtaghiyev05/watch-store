@@ -1,0 +1,126 @@
+.products-container
+    padding-top: 2rem
+    gap: 2rem
+    display: grid
+    justify-content: center
+    @include responsive_md
+        grid-template-columns: repeat(2, 1fr)
+    @include responsive_lg
+        grid-template-columns: repeat(3, 1fr)
+
+    .card
+        @include flex(column, $align: center)
+        width: 300px
+        height: 100%
+        border-radius: 10px
+        border: 1px solid $white
+        box-shadow: -1px 2px 12px 0px rgba(0,0,0,0.75)
+        padding: 1rem
+
+        .img-container
+            @include flex(row, center, center)
+            width: 250px
+            height: 250px
+
+            img
+                border-radius: 10px
+                object-fit: contain
+
+        .card-title
+            align-self: flex-start
+            padding: .5rem
+            padding-bottom: 0
+            font-size: 1.3rem
+            height: 80px
+
+        .card-bottom
+            @include flex(row, space-between, center)
+            padding: 0 .9rem
+            width: 100%
+            margin: auto
+
+            .card-price
+                font-size: 1.1rem
+                font-weight: 500
+
+                .discount-price
+                    font-size: .9rem
+                    padding-right: .4rem
+                    text-decoration-line: line-through
+                    color: #777a81
+
+            .add-btn
+                background: none
+                width: 40px
+                transition: .3s
+                &:hover
+                    transform: scale(1.2)
+
+// pagination styling
+.pagination-buttons
+    width: 80%
+    height: 40px
+    @include flex(row, center, center)
+    margin: 2rem 0
+
+    a
+        padding: 6px 10px
+        margin: 0 8px
+        border-radius: 5px
+        border: 1px solid $darkBlue
+        color: $darkBlue
+        cursor: pointer
+        transition: .3s
+        &:hover
+            color: $white
+            background-color: $darkBlue
+
+.pagination-active
+    a
+        color: $white
+        background-color: $darkBlue
+
+.pagination-disabled
+    a, a:hover
+        background-color:  #fff
+        color: #ccc
+        cursor: no-drop
+
+// sort filter
+.sort-container
+    width: 100%
+    margin-top: 1rem
+    @include flex(row, flex-end, center)
+    @include responsive_lg
+        margin-right: 1rem
+
+    span
+        margin-right: 1rem
+        font-size: 1.2rem
+
+    select
+        padding: .4rem .6rem
+        margin-right: 1rem
+        font-size: 1rem
+        cursor: pointer
+        outline: none
+
+        option
+            font-size: 1rem
+
+// search filter
+.search-container
+    width: 95%
+    margin-top: 3rem
+    
+    .search-input
+        width: 100%
+        padding: .4rem .7rem
+        font-size: 1rem
+        outline: none
+
+.no-results
+    margin-top: 3rem
+    font-size: 1.2rem
+    text-align: center
+    
