@@ -122,10 +122,17 @@
                             .sm-btn
                                 background: none
                                 cursor: pointer
-                                img
-                                    width: 20px
-                                    @include responsive_md
-                                        width: 25px
+                                font-size: 2.5rem
+                                color: $black
+                                @include flex(row, center, center)
+                                height: 30px
+                                width: 30px
+                                transition: .4s
+                                @include responsive_md
+                                    font-size: 3rem
+                                &:hover
+                                    transform: scale(1.1)
+                                    
                         
             .summary-container
                 flex: 1

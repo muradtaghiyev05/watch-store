@@ -1,5 +1,3 @@
-import Plus from '../../assets/other-images/plus.svg'
-import Minus from '../../assets/other-images/minus.svg'
 import EmptyBag from '../../assets/other-images/empty-bag.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -105,9 +103,9 @@ const Cart = () => {
                   </div>
                   <div className='price-container'>
                     <div className='amount-container'>
-                      <button className='sm-btn' onClick={() => removeItem(product)}><img src={Minus} alt='minus' /></button>
+                      <button className='sm-btn' onClick={() => removeItem(product)}>-</button>
                       <span className='amount'>{product.quantity}</span>
-                      <button className='sm-btn' onClick={() => addItem(product)}><img src={Plus} alt='plus' /></button>
+                      <button className='sm-btn' onClick={() => addItem(product)}>+</button>
                     </div>
                     <div className='total-price'>
                       <span className='detail-span' id='subtotal'><b>Ümumi:</b> {product.price * product.quantity} AZN</span>
