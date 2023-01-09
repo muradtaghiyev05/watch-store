@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
-import Layout from './components/layout/Layout'
 import Loading from './components/loading/Loading';
+import ErrorPage from './components/error/ErrorPage';
 
+const Layout = lazy(() => import('./components/layout/Layout'));
 const Home = lazy(() => import('./components/home/Home'));
 const About = lazy(() => import('./components/about/About'));
 const Cart = lazy(() => import('./components/cart/Cart'));
@@ -21,6 +22,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/about' element={<About />} />
             <Route path='/how-works' element={<HowWorks />} />
+            <Route path='*' element={<ErrorPage />} />
           </Route>
         </Routes>
       </Suspense>
