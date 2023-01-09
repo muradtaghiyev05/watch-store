@@ -17,14 +17,14 @@ const Header = () => {
   return (
       <div className='header'>
           <div className='header-container con'>
-            <Link to='/' className='Link' onClick={closeMobileMenu}>
+            <a href='/' className='Link' onClick={closeMobileMenu}>
                 <div className='logo-container'>
                     <div className='logo-img-container'>
                         <img src={Logo} alt='saat' />
                     </div>
                     <h1>Saat Dünyası</h1>
                 </div>
-            </Link>
+            </a>
             <div className='right'>
                 <div className='menu-icon' onClick={handleClick}>
                     {toggle ? <img src={CloseIcon} alt='close' /> : <img src={MenuIcon} alt='menu' />}
