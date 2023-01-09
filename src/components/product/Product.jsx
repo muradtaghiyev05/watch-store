@@ -59,7 +59,11 @@ const Product = () => {
               )}
             </span>
             <div className='amount-container'>
-              <input type='number' value={itemQuantity} className='amount' onChange={handleChange} />
+              <select className='amount' value={itemQuantity} onChange={handleChange}>
+                {Array.from({ length: 30 }, (item, index) => item = index + 1).map(num => (
+                  <option key={num}>{num}</option>
+                ))}
+              </select>
               <button className='add-to-cart-btn' onClick={() => handleClick(product)}>Səbətə At</button>
             </div>
             <span className='about-product-title'>Məhsul Haqqında</span>

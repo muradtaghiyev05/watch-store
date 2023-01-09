@@ -6,6 +6,8 @@ import { addProduct } from '../../redux/cartRedux';
 import { useState } from 'react';
 import { Toaster } from "react-hot-toast";
 import ReactPaginate from 'react-paginate';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const Products = () => {
 
@@ -93,7 +95,15 @@ const Products = () => {
               <div key={item.id} className='card'>
                 <Link to={`/product/${item.id}`} className="Link">
                   <div className='img-container'>
-                    <img src={item.images.img1} alt='card' />
+                    <LazyLoadImage
+                      className='card-img'
+                      src={item.images.img1}
+                      alt='card'
+                      effect="blur"
+                      width='250px'
+                      height='250px'
+                      placeholderSrc={item.images.img1}
+                    />
                   </div>
                   <h3 className='card-title'>{item.title}</h3>
                 </Link>

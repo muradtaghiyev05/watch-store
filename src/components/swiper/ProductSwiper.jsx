@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
 import "swiper/scss";
 import "swiper/scss/navigation";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const ProductSwiper = ({ images }) => {
 
@@ -30,7 +32,14 @@ const ProductSwiper = ({ images }) => {
         >
             {Object.values(images).map((item, index) => (
                 <SwiperSlide key={index}>
-                    <img src={item} alt='product' />
+                    <LazyLoadImage
+                        src={item}
+                        alt='product'
+                        effect="blur"
+                        placeholderSrc={item}
+                        width='100%'
+                        height='100%'
+                    />
                 </SwiperSlide>
             ))}
         </Swiper>
