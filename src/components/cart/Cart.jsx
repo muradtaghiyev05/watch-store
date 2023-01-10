@@ -48,14 +48,6 @@ const Cart = () => {
       };
     });
     productsText += ` sifariş etmək istəyirəm.%0AToplam Məbləğ: ${total - discount} AZN%0AÇatdırılma: ${delivery} AZN`;
-
-    // const wpMessage = productsText
-    //   .replaceAll(',', '%2C')
-    //   .replaceAll(' ', '%20')
-    //   .replaceAll('ə', '%C9%99')
-    //   .replaceAll('ş', '%C5%9F')
-    //   .replaceAll('ğ', '%C4%9F')
-    //   .replaceAll(':', '%3A');
     
     window.open(`https://wa.me/994553600600?text=${productsText}`);
   };
