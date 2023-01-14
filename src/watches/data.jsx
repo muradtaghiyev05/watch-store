@@ -1,8 +1,8 @@
-import Cornwall1 from './images/cornwall1.webp'
-import Cornwall2 from './images/cornwall2.webp'
-import Cornwall3 from './images/cornwall3.webp'
-import Cornwall4 from './images/cornwall4.webp'
-import Cornwall5 from './images/cornwall5.webp'
+// import Cornwall1 from './images/cornwall1.webp'
+// import Cornwall2 from './images/cornwall2.webp'
+// import Cornwall3 from './images/cornwall3.webp'
+// import Cornwall4 from './images/cornwall4.webp'
+// import Cornwall5 from './images/cornwall5.webp'
 import Cartier1 from './images/cartier1.webp'
 import Cartier2 from './images/cartier2.webp'
 import Cartier3 from './images/cartier3.webp'
@@ -69,20 +69,20 @@ import Tissot3 from './images/tissot3.webp'
 import Tissot4 from './images/tissot4.webp'
 
 const watchesArr = [
-    {
-        id: 1,
-        title: "Classic Cornwall",
-        price: 209.00,
-        discount: 0,
-        desc: "With its distinctive dial and all-black NATO strap, the Classic Cornwall is a true eye-catcher that embodies the timeless and elegant characteristics of our flagship Classic collection. With a sleek design and a captivating essence, this is a modern Classic made for every occasion.",
-        images: {
-            img1: Cornwall1,
-            img2: Cornwall2,
-            img4: Cornwall3,
-            img3: Cornwall4,
-            img5: Cornwall5,
-        },
-    },
+    // {
+    //     id: 1,
+    //     title: "Classic Cornwall",
+    //     price: 209.00,
+    //     discount: 0,
+    //     desc: "With its distinctive dial and all-black NATO strap, the Classic Cornwall is a true eye-catcher that embodies the timeless and elegant characteristics of our flagship Classic collection. With a sleek design and a captivating essence, this is a modern Classic made for every occasion.",
+    //     images: {
+    //         img1: Cornwall1,
+    //         img2: Cornwall2,
+    //         img4: Cornwall3,
+    //         img3: Cornwall4,
+    //         img5: Cornwall5,
+    //     },
+    // },
     {
         id: 2,
         title: "Tank Louis Cartier",
