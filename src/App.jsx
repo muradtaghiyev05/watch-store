@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
+
 import Loading from './components/loading/Loading';
 import ErrorPage from './components/error/ErrorPage';
 
+const Products = lazy(() => import('./components/products/Products'));
 const Layout = lazy(() => import('./components/layout/Layout'));
 const Home = lazy(() => import('./components/home/Home'));
 const About = lazy(() => import('./components/about/About'));
@@ -19,6 +21,7 @@ function App() {
           <Route path='/' element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path='/product/:id' element={<Product />} />
+            <Route path="/products" element={<Products />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/about' element={<About />} />
             <Route path='/how-works' element={<HowWorks />} />

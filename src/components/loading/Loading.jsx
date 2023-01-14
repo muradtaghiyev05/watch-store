@@ -9,8 +9,6 @@ const Loading = () => {
             radius="48"
             color="#22333b"
             ariaLabel="watch-loading"
-            wrapperStyle={{  }}
-            wrapperClassName=""
             visible={true}
         />
     </div>

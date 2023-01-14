@@ -1,12 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { watches } from '../../watches/data';
 import { useParams } from 'react-router-dom';
 import ProductSwiper from '../swiper/ProductSwiper';
-import { useDispatch, useSelector } from 'react-redux';
-import { addQuantity, addProduct } from '../../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../redux/cartRedux';
 import { Toaster } from 'react-hot-toast';
 
 const Product = () => {
+
+  const [itemQuantity, setItemQuantity] = useState(1);
+  const params = useParams();
+  const dispatch = useDispatch();
+
+  const handleClick = (item) => {
+    dispatch(addProduct({
+      id: item.id,
+      product: item,
+      quantity: itemQuantity,
+      price: item.price,
+      message: `${itemQuantity} ədəd ${item.title} səbətə əlavə olundu!`
+    }));
+  };
 
   useEffect(() => {
     const changePage = () => {
@@ -14,26 +28,6 @@ const Product = () => {
     };
     changePage()
   }, []);
-
-  const [itemQuantity, setItemQuantity] = useState(1);
-  const params = useParams();
-  const dispatch = useDispatch();
-  const products = useSelector(state => state.cart.products);
-
-  const handleClick = (item) => {
-    if (products.some(product => product.id === item.id)) {
-      dispatch(addQuantity({ id: item.id, price: item.price, quantity: itemQuantity, product: item, message: `${itemQuantity} ədəd ${item.title} səbətə əlavə olundu!` }));
-    } else {
-      dispatch(addProduct({ product: item, price: item.price, message: `${itemQuantity} ədəd ${item.title} səbətə əlavə olundu!` }));
-      dispatch(addQuantity({ id: item.id, price: item.price, quantity: itemQuantity - 1, product: item, message: "" }));
-    }
-  }
-
-  // validation of number input
-  const handleChange = (event) => {
-    const value = Math.max(1, Math.min(50, Number(event.target.value)));
-    setItemQuantity(value);
-  };
 
   return (
     watches.map((product) => (
@@ -59,7 +53,7 @@ const Product = () => {
               )}
             </span>
             <div className='amount-container'>
-              <select className='amount' value={itemQuantity} onChange={handleChange}>
+              <select className='amount' value={itemQuantity} onChange={(e) => setItemQuantity(parseInt(e.target.value))}>
                 {Array.from({ length: 30 }, (item, index) => item = index + 1).map(num => (
                   <option key={num}>{num}</option>
                 ))}

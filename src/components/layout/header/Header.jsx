@@ -17,14 +17,14 @@ const Header = () => {
   return (
       <div className='header'>
           <div className='header-container con'>
-            <a href='/' className='Link' onClick={closeMobileMenu}>
+            <Link to='/' className='Link' onClick={closeMobileMenu}>
                 <div className='logo-container'>
                     <div className='logo-img-container'>
                         <img src={Logo} alt='saat' />
                     </div>
                     <h1>Saat Dünyası</h1>
                 </div>
-            </a>
+            </Link>
             <div className='right'>
                 <div className='menu-icon' onClick={handleClick}>
                     {toggle ? <img src={CloseIcon} alt='close' /> : <img src={MenuIcon} alt='menu' />}
@@ -37,8 +37,13 @@ const Header = () => {
                             </Link>
                         </li>
                         <li className='nav-item'>
+                            <Link to='/products' className='nav-links Link' onClick={closeMobileMenu}>
+                                Saatlar
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
                             <Link to='/how-works' className='nav-links Link' onClick={closeMobileMenu}>
-                                Necə?
+                                Necə
                             </Link>
                         </li>
                         <li className='nav-item' id='cart-item'>

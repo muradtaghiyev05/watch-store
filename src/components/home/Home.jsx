@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import HomeImg from '../../assets/other-images/home-image.jpg'
-import Products from '../products/Products'
+import NewArrival from "../new-arrival/NewArrival";
+import NewProducts from '../new-products/NewProducts'
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -17,9 +19,13 @@ const Home = () => {
             <img src={HomeImg} alt='hero' />
             <div className='hero-title'>ZÖVQÜNÜZƏ <br/> UYĞUN SAATLAR</div>
         </div>
-        <div className='products-part'>
-          <h1 id='products'>Brend Saatlar</h1>
-          <Products />
+        <div className="new-arrival-container con">
+          <NewArrival />
+        </div>
+        <div className="new-products-container">
+          <h1>Yeni Gələn Saatlar</h1>
+          <NewProducts />
+          <Link to='/products' className="all-link Link">Bütün Məhsullar</Link>
         </div>
     </div>
   )

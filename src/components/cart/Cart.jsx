@@ -2,7 +2,7 @@ import EmptyBag from '../../assets/other-images/empty-bag.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
-import { addQuantity, removeProduct, removeQuantity } from '../../redux/cartRedux'
+import { addProduct, removeProduct, removeQuantity } from '../../redux/cartRedux'
 import { Toaster } from 'react-hot-toast'
 
 const discount = 25;
@@ -10,29 +10,36 @@ const delivery = 3;
 
 const Cart = () => {
 
-  useEffect(() => {
-    const changePage = () => {
-      window.scrollTo({ top: 0 });
-    };
-    changePage()
-  }, []);
-
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   // for removing quantity
-  const removeItem = (product) => {
-    dispatch(removeQuantity({ id: product.id, price: product.price, quantity: product.quantity - 1, product }));
+  const removeItem = (item) => {
+    dispatch(removeQuantity({
+      id: item.id,
+      price: item.price,
+      message: `1 ədəd ${item.title} səbətdən silindi!`
+    }));
   };
 
   // for adding quantity
-  const addItem = (product) => {
-    dispatch(addQuantity({ id: product.id, price: product.price, quantity: 1, product, message: `1 ədəd ${product.title} səbətə əlavə olundu!` }));
+  const addItem = (item) => {
+    dispatch(addProduct({
+      id: item.id,
+      quantity: 1,
+      price: item.price,
+      message: `1 ədəd ${item.title} səbətə əlavə olundu!`
+    }));
   };
 
   // for removing product
-  const handleRemove = (product) => {
-    dispatch(removeProduct({ id: product.id, price: product.price, quantity: product.quantity, product }));
+  const handleRemove = (item) => {
+    dispatch(removeProduct({
+      id: item.id,
+      price: item.price,
+      quantity: item.quantity,
+      message: `${item.title} səbətdən silindi!`
+    }));
   };
 
   // for whatsapp payment
@@ -52,6 +59,13 @@ const Cart = () => {
     window.open(`https://wa.me/994553600600?text=${productsText}`);
   };
 
+  useEffect(() => {
+    const changePage = () => {
+      window.scrollTo({ top: 0 });
+    };
+    changePage()
+  }, []);
+
   return (
     <div className='bag'>
       <h1 className='bag-title'>Alış-Veriş Səbətiniz</h1>
@@ -67,12 +81,12 @@ const Cart = () => {
             <span className='empty-title'>Təəssüf ki, səbətiniz boşdur.</span>
             <img src={EmptyBag} alt='empty-bag' className='empty-img' />
           </div>
-          <Link to='/' className='Link'><button className='continue-btn'>Almağa davam et</button></Link>
+          <Link to='/products' className='Link'><button className='continue-btn'>Almağa davam et</button></Link>
         </div>
       ) : (
       <div className='bag-container'>
         <div className='top-container'>
-          <Link to='/' className='Link'><button className='left-btn'>Almağa davam et</button></Link>
+          <Link to='/products' className='Link'><button className='left-btn'>Almağa davam et</button></Link>
           <span className='top-title'>Alışveriş Səbəti ({cart.quantity})</span>
           <button className='right-btn' onClick={handlePayment}>Ödəniş Et</button>
         </div>

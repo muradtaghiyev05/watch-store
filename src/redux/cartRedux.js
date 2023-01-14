@@ -20,48 +20,37 @@ const cartSlice = createSlice({
     },
     reducers: {
         addProduct: (state, action) => {
-            state.quantity += 1;
-            state.products.push(action.payload.product);
-            state.total += action.payload.price;
-            setCartFunc(state.products, state.quantity, state.total);
-            if (action.payload.message) {
-                toast.success(action.payload.message);
+            const itemInCart = state.products.find(product => product.id === action.payload.id);
+            if (itemInCart) {
+                itemInCart.quantity += action.payload.quantity;
+            } else {
+                state.quantity += 1;
+                state.products.push({ ...action.payload.product, quantity: action.payload.quantity });
             }
+            toast.success(action.payload.message);
+            state.total += action.payload.price * action.payload.quantity;
+            setCartFunc(state.products, state.quantity, state.total);
         },
         removeProduct: (state, action) => {
             state.quantity -= 1;
             state.products = state.products.filter((item) => item.id !== action.payload.id);
             state.total -= action.payload.price * action.payload.quantity;
+            toast.error(action.payload.message);
             setCartFunc(state.products, state.quantity, state.total);
-            toast.error(`${action.payload.product.title} səbətdən silindi!`);
-        },
-        addQuantity: (state, action) => {
-            state.products.map((product) => {
-                if (product.id === action.payload.id) {
-                    product.quantity += action.payload.quantity;
-                }});
-            state.total += action.payload.price * action.payload.quantity;
-            setCartFunc(state.products, state.quantity, state.total);
-            if (action.payload.message) {
-                toast.success(action.payload.message);
-            }
         },
         removeQuantity: (state, action) => {
-            state.products.map((product) => {
-                if (product.id === action.payload.id) {
-                    product.quantity -= 1;
-                }
-            });
+            const itemInCart = state.products.find(product => product.id === action.payload.id);
+            itemInCart.quantity -= 1;
             state.total -= action.payload.price;
-            if (action.payload.quantity === 0) {
+            if (itemInCart.quantity === 0) {
                 state.quantity -= 1;
                 state.products = state.products.filter((item) => item.quantity !== 0);
             };
+            toast.error(action.payload.message);
             setCartFunc(state.products, state.quantity, state.total);
-            toast.error(`1 ədəd ${action.payload.product.title} səbətdən silindi!`)
         },
     },
 })
 
-export const { addProduct, addQuantity, removeQuantity, removeProduct } = cartSlice.actions;
+export const { addProduct, removeQuantity, removeProduct } = cartSlice.actions;
 export default cartSlice.reducer;
