@@ -40,7 +40,7 @@ const ProductCard = ({ item }) => {
                 />
             </div>
             <div className='card-info'>
-                <h3 className='card-title'>{item.title}</h3>
+                <span className='card-title'>{item.title}</span>
             </div>
         </Link>
         <div className='card-bottom'>
