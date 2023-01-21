@@ -6,6 +6,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css'
 import ProductCard from '../product-card/ProductCard';
 import SearchFilter from '../filters/search-filter/SearchFilter';
 import SortFilter from '../filters/sort-filter/SortFilter';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from "framer-motion";
 
 const productsPerPage = 8;
@@ -23,37 +24,40 @@ const sortTypes = {
 
 const Products = () => {
 
-  // search variables
-  const [searchText, setSearchText] = useState('');
-  const searchResults = [...watches].filter((product) => product.title.toLowerCase().includes(searchText.trim().toLowerCase()));
+    const [searchParams, setSearchParams] = useSearchParams();
+    // console.log(Object.fromEntries([...searchParams]));
 
-  // pagination variables
-  const [pageNumber, setPageNumber] = useState(0);
-  const pagesVisited = pageNumber * productsPerPage;
-  const pageCount = Math.ceil(searchResults.length / productsPerPage);
+    // search variables
+    const searchText = searchParams.get('title') || '';
+    const searchResults = [...watches].filter((product) => product.title.toLowerCase().includes(searchText.trim().toLowerCase()));
 
-  // sorting variables
-  const [currentSort, setCurrentSort] = useState('default');
+    // pagination variables
+    const pageNumber = parseInt(searchParams.get('page')) || 0;
+    const pagesVisited = pageNumber * productsPerPage;
+    const pageCount = Math.ceil(searchResults.length / productsPerPage);
 
-  // changing page
-  const changePage = ({ selected }) => {
-      document.getElementById("products").scrollIntoView();
-      setPageNumber(selected);
-  };
+    // sorting variables
+    const currentSort = searchParams.get('sorting') || 'default';
 
-  // scroll to top when changing
-  useEffect(() => {
-      const changePage = () => {
-          window.scrollTo({ top: 0 });
-      };
-      changePage()
-  }, []);
+    // changing page
+    const changePage = ({ selected }) => {
+        document.getElementById("products").scrollIntoView();
+        setSearchParams({ ...Object.fromEntries([...searchParams]), page: selected })
+    };
+
+    // scroll to top when changing
+    useEffect(() => {
+        const changePage = () => {
+            window.scrollTo({ top: 0 });
+        };
+        changePage()
+    }, []);
 
   return (
     <div className='products-page'>
         <h1 className='products-page-title' id='products'>Brend Saatlarımız</h1>
-        <SearchFilter searchText={searchText} setSearchText={setSearchText} setPageNumber={setPageNumber} />
-        <SortFilter currentSort={currentSort} setCurrentSort={setCurrentSort} setPageNumber={setPageNumber} />
+        <SearchFilter searchText={searchText} searchParams={searchParams} setSearchParams={setSearchParams} />
+        <SortFilter currentSort={currentSort} searchParams={searchParams} setSearchParams={setSearchParams} />
         {searchResults.length ? (
             <motion.div layout className='products-container'>
                 <Toaster
