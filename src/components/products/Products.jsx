@@ -1,6 +1,5 @@
 import { watches } from '../../watches/data';
 import { useEffect } from 'react';
-import { Toaster } from "react-hot-toast";
 import ReactPaginate from 'react-paginate';
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import ProductCard from '../product-card/ProductCard';
@@ -53,12 +52,6 @@ const Products = () => {
 
   return (
     <div className='products-page'>
-        <Toaster
-            position='bottom-left'
-            toastOptions={{
-                duration: 5000
-            }}
-        />
         <h1 className='products-page-title' id='products'>Brend Saatlarımız</h1>
         <SearchFilter searchText={searchText} searchParams={searchParams} setSearchParams={setSearchParams} />
         <SortFilter currentSort={currentSort} searchParams={searchParams} setSearchParams={setSearchParams} />
