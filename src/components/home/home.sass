@@ -9,22 +9,38 @@
         img
             object-fit: cover
 
-        .hero-title
-            background-color: rgb(10, 9, 8, 0.7)
+        .hero-info
+            text-align: center
             position: absolute
-            bottom: 2%
-            left: 0%
-            color: $white
-            width: 100%
-            padding: 1rem 0 1rem 1rem
-            font-size: 2rem
-            font-weight: 600
-            line-height: 1.2
-            @include responsive_sm
-                width: auto
-                padding-right: 10rem
-                border-radius: 0 1rem 1rem 0
-                font-size: 2.2rem
+            bottom: 10%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+            .hero-btn
+                text-align: center
+                font-size: 1rem
+                color: black
+                background-color: white
+                padding: .5rem 1.2rem
+                box-shadow: -1px 2px 12px 0px rgba(0,0,0,0.3)
+                @include responsive_sm
+                    font-size: 1.1rem
+                    padding: .6rem 1.4rem
+                @include responsive_md
+                    font-size: 1.2rem
+                    padding: .6rem 1.6rem
+            
+            h2
+                text-shadow: 2px 2px 20px rgba(0, 0, 0,0.8)
+                white-space: nowrap
+                font-size: 1.2rem
+                font-weight: 400
+                color: $white
+                padding-bottom: 1rem
+                @include responsive_sm
+                    font-size: 1.6rem
+                @include responsive_md
+                    font-size: 2rem
 
     .new-products-container
         @include flex(column, center, center)

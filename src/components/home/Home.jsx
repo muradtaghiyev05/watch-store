@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import HomeImg from '../../assets/other-images/home-image.jpg'
+import HomeImg from '../../assets/other-images/home-image.webp'
 import NewArrival from "../new-arrival/NewArrival";
 import NewProducts from '../new-products/NewProducts'
 import { Link, useLocation } from "react-router-dom";
@@ -18,7 +18,10 @@ const Home = () => {
     <div className='home'>
         <div className='hero-container'>
             <img src={HomeImg} alt='hero' />
-            <div className='hero-title'>ZÖVQÜNÜZƏ <br/> UYĞUN SAATLAR</div>
+            <div className="hero-info">
+                <h2>Hər Zövqə Uyğun</h2>
+                <Link to={`/products`}><button className="hero-btn">Bütün Saatlar</button></Link>
+            </div>
         </div>
         <div className="new-arrival-container con">
           <NewArrival />
